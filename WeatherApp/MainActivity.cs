@@ -65,5 +65,41 @@ namespace WeatherApp
         public void OnStatusChanged(string provider, [GeneratedEnum] Availability status, Bundle extras)
         {
         }
+
+        private class GetW : AsyncTask<String, Java.Lang.Void, String>
+        {
+            [Obsolete]
+            private ProgressDialog pd = new ProgressDialog(Application.Context);
+            private MainActivity activity;
+            WMap wMap;
+            public GetW(MainActivity activity, WMap wMap)
+            {
+                this.activity = activity;
+                this.wMap = wMap;
+            }
+
+            [Obsolete]
+            protected override void OnPreExecute()
+            {
+                base.OnPreExecute();
+                pd.Window.SetType(Android.Views.WindowManagerTypes.SystemAlert);
+                pd.SetTitle("Location Check...");
+                pd.Show();
+            }
+
+            protected override string RunInBackground(params string[] @params)
+            {
+                string stream = null;
+                string urlstring = @params[0];
+
+                //urlstring = Common.Common.APIRequest(lat.ToString(), lon.ToString());
+                Helper.Help http = new Helper.Help();
+                stream = http.GetHTTP(urlstring);
+                return stream;
+            }
+
+           
+        }
+
     }
 }

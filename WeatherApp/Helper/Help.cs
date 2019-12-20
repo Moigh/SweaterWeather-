@@ -18,7 +18,7 @@ namespace WeatherApp.Helper
     {
         static String stream = null;
 
-        public Helper() { }
+        public Help() { }
 
         public string GetHTTP(string webpage)
         {
