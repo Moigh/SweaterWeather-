@@ -17,11 +17,11 @@ namespace WeatherApp.Common
         public static string API_KEY = "161d17c2537e0ae2e8cbf9c3e9252b9d";
         public static string API_LINK = "http://api.openweathermap.org/data/2.5/weather";
 
-        public static string APIRequest(string lat, string lng)
+        public static string APIRequest(string lat, string lon)
         {
-            StringBuilder sb = new StringBuilder(API_LINK);
-            sb.AppendFormat("?lat={0}&lon={1}&APPID{2}&units=metric");
-            return sb.ToString();
+            StringBuilder s = new StringBuilder(API_LINK);
+            s.AppendFormat($"?lat={0}&lon={1}&APPID{2}&units=metric", lat, lon, API_KEY);
+            return s.ToString();
 
         }
 
