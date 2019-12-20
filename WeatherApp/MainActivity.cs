@@ -3,12 +3,21 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Runtime;
 using Android.Widget;
+using Android.Locations;
 
 namespace WeatherApp
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
+        TextView textCity, textLastUpdate, textDescription, textDegree, textTime, textHumidity;
+        ImageView ImageView1;
+
+        LocationManager LocMan;
+        string prov;
+        static double lat, lng;
+        
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);

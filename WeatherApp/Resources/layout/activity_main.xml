@@ -1,7 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-</RelativeLayout>
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop = "40dp"
+        android:id="@+id/textCity"
+        android:textStyle="bold"
+        android:textSize="40sp"
+        android:text=""
+        android:gravity="center"    
+    />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop = "40dp"
+        android:id="@+id/textLastUpdate"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:text=""
+        android:gravity="center"    
+    />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageView1"
+        android:layout_gravity="center"   
+    />
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop = "40dp"
+        android:id="@+id/textDescription"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:text=""
+        android:gravity="center"    
+    />
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop = "40dp"
+        android:id="@+id/textHumidity"
+        android:textStyle="bold"
+        android:textSize="40sp"
+        android:text=""
+        android:gravity="center"    
+    />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop = "40dp"
+        android:id="@+id/textTime"
+        android:textStyle="bold"
+        android:textSize="40sp"
+        android:text=""
+        android:gravity="center"    
+    />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop = "40dp"
+        android:id="@+id/textDegree"
+        android:textStyle="bold"
+        android:textSize="40sp"
+        android:text=""
+        android:gravity="center"    
+    />
+</LinearLayout>
