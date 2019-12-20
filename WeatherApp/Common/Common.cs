@@ -25,7 +25,17 @@ namespace WeatherApp.Common
 
         }
 
-        public static string UTimeToDate ()
+        public static DateTime UTimeToDate (double uTime)
+        {
+            DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            date.AddSeconds(uTime).ToLocalTime();
+            return date;
+        }
+
+        public static string GetImage(string icon)
+        {
+            return $"http://openweathermap.org/img/w/{icon}.png";
+        }
 
     }
 }
