@@ -6,6 +6,7 @@ using Android.Widget;
 using Android.Locations;
 using WeatherApp.Model;
 using System;
+using Newtonsoft.Json;
 
 namespace WeatherApp
 {
@@ -98,7 +99,20 @@ namespace WeatherApp
                 return stream;
             }
 
-           
+            [Obsolete]
+            protected override void OnPostExecute(string result)
+            {
+                base.OnPostExecute(result);
+                if(result.Contains("Error: not found city"))
+                {
+                    pd.Dismiss();
+                    return;
+                }
+                wMap = JsonConvert.DeserializeObject(WMap) < result >;
+                pd.Dismiss();
+                return;
+
+            }
         }
 
     }
