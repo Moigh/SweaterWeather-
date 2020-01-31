@@ -34,7 +34,13 @@ namespace WeatherApp
             LocMan = (LocationManager)GetSystemService(Context.LocationService);
             provider = LocMan.GetBestProvider(new Criteria(), false);
 
-            Location location = LocMan.GetLastKnownLocation(provider);
+            Location location = null;
+            if (provider == null)
+            {
+                System.Diagnostics.Debug.WriteLine("Providers disabled..");
+            }
+            else           
+                location = LocMan.GetLastKnownLocation(provider);
             if(location == null)
             {
                 System.Diagnostics.Debug.WriteLine("No location");
