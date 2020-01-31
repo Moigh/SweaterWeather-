@@ -37,7 +37,7 @@ namespace WeatherApp
             Location location = LocMan.GetLastKnownLocation(provider);
             if(location == null)
             {
-                System.Diagnostics.Debug.WriteLine("No location")
+                System.Diagnostics.Debug.WriteLine("No location");
             }
 
         }
@@ -64,6 +64,7 @@ namespace WeatherApp
             lat = Math.Round(location.Latitude, 4);
             lon = Math.Round(location.Longitude, 4);
 
+            new GetW(this, wMap).Execute(Common.Common.APIRequest(lat.ToString(), lon.ToString()));
         }
 
         public void OnProviderDisabled(string provider)
