@@ -7,6 +7,7 @@ using Android.Locations;
 using WeatherApp.Model;
 using System;
 using Newtonsoft.Json;
+using Android.Content;
 
 namespace WeatherApp
 {
@@ -29,6 +30,16 @@ namespace WeatherApp
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
+
+            LocMan = (LocationManager)GetSystemService(Context.LocationService);
+            provider = LocMan.GetBestProvider(new Criteria(), false);
+
+            Location location = LocMan.GetLastKnownLocation(provider);
+            if(location == null)
+            {
+                System.Diagnostics.Debug.WriteLine("No location")
+            }
+
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -108,8 +119,35 @@ namespace WeatherApp
                     pd.Dismiss();
                     return;
                 }
-                wMap = JsonConvert.DeserializeObject(WMap) < result >;
+                wMap = JsonConvert.DeserializeObject<WMap> (result);
                 pd.Dismiss();
+
+                //Control
+                activity.textCity = activity.FindViewById<TextView>(Resource.Id.textCity);
+                activity.textLastUpdate = activity.FindViewById<TextView>(Resource.Id.textLastUpdate);
+                activity.textDescription = activity.FindViewById<TextView>(Resource.Id.textDescription);
+                activity.textHumidity = activity.FindViewById<TextView>(Resource.Id.textHumidity);
+                activity.textTime = activity.FindViewById<TextView>(Resource.Id.textTime);
+                activity.textDegree = activity.FindViewById<TextView>(Resource.Id.textDegree);
+
+
+                activity.ImageView1 = activity.FindViewById<ImageView>(Resource.Id.imageView1);
+
+                //AddText
+                activity.textCity.Text = $"{wMap.name},{wMap.sys.country}";
+                activity.textLastUpdate.Text = $"Last Updated: {DateTime.Now.ToString("dd MMMM yyyy HH:mm")}";
+                activity.textDescription.Text = $"{wMap.weather[0].description}";
+                activity.textHumidity.Text = $"Humidity: {wMap.main.humidity} %";
+                activity.textTime.Text = $"{Common.Common.UnixTimeStampToDateTime(wMap.sys.sunrise)}/{Common.Common.UnixTimeStampToDateTime(wMap.sys.sunset)}";
+                activity.textDegree.Text = $"{wMap.main.temp} °C";
+
+                if (!String.IsNullOrEmpty(wMap.weather[0].icon))
+                {
+                    Android.Net.Uri url = Android.Net.Uri.Parse(Common.Common.GetImage(wMap.weather[0].icon));
+                    activity.ImageView1.SetImageURI(url);
+                }
+
+
                 return;
 
             }

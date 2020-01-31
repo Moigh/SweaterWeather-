@@ -27,8 +27,8 @@ namespace WeatherApp.Helper
                 using (var URLconnect = (HttpURLConnection)url.OpenConnection())
                 {
                     if (URLconnect.ResponseCode == HttpStatus.Ok) ;
-                    BufferedReader br = new BufferedReader(new InputStream(URLconnect.InputStream));
-                    StringBuilder s = new StringBuilder;
+                    BufferedReader br = new BufferedReader(new InputStreamReader(URLconnect.InputStream));
+                    StringBuilder s = new StringBuilder();
                     string line;
                     while ((line = br.ReadLine()) != null)
                         s.Append(line);

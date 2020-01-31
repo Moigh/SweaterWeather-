@@ -37,5 +37,9 @@ namespace WeatherApp.Common
             return $"http://openweathermap.org/img/w/{icon}.png";
         }
 
+        internal static object UnixTimeStampToDateTime(int sunrise)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
